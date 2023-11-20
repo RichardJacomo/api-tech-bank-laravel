@@ -21,7 +21,6 @@ class User extends Authenticatable implements JWTSubject{
         'balance',
     ];
 
-
     protected $hidden = [
         'password',
         'remember_token',

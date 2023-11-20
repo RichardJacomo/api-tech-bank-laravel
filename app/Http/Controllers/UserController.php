@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\{CreateUserRequest, DepositRequest};
+use App\Http\Requests\{CreateUserRequest, DepositRequest, UpdateUserRequest};
 use App\Models\User;
 use App\Services\CreateUserService;
 use App\Services\DepositService;
-use Illuminate\Http\Request;
 // use Illuminate\Support\Facades\Log;
 // Log::debug($users); //used to debug the application
 
@@ -27,7 +26,7 @@ class UserController extends Controller{
         return $user;
     }
 
-    public function update(Request $request, $id){
+    public function update(UpdateUserRequest $request, $id){
         $user = User::find($id);
         $user->update($request->all());
         return $user;
@@ -36,7 +35,7 @@ class UserController extends Controller{
     public function destroy($id){
         $user = User::find($id);
         $user->delete();
-        return $user;
+        return response()->noContent();
     }
 
     public function deposit(DepositRequest $request){
